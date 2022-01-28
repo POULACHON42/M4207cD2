@@ -1,12 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
 <form method="post" action="traitement.php">
    <p>
-       <label for="pseudo">Entrez le pseudo :</label>
+     <br>  <label for="pseudo">Entrez le pseudo :</label> </br>
        <input type="text" name="pseudo" id="pseudo" />
        <br></br>
        <br />
-       <label for="pass">Veuillez mettre votre mot de passe :</label>
+      <br> <label for="pass">Veuillez mettre votre mot de passe :</label> </br>
        <input type="password" name="pass" id="pass" />
        <br></br>
        <input type="submit" value="Envoyer" />
    </p>
 </form>
+{% endblock %}

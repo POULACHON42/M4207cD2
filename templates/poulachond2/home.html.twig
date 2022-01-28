@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<p>
+<br>
+<h1> Bienvenue sur mon site internet </h1>
+<br>
+Entrez login et mot de passe
+</p>
+
+<h4> Champ a remplir </h4>
+<form method="post" action="traitement">
+   <p>
+       <BLOCKQUOTE><CENTER>
+       <label for="pseudo">    Votre pseudo :   </label>
+       <BLOCKQUOTE>
+       <input type="text" name="login" id="login" />
+         <br />
+      <BLOCKQUOTE>
+      <br></br> 
+      <label for="pass">Votre mot de passe :</label>
+      <BLOCKQUOTE>
+       <input type="password" name="pass" id="pass" />
+<br></br>
+        
+       <input type="submit" value="Envoyer le formulaire">
+       <form action="formulaire.html.twig"
+       </CENTER>
+   </p>
+</form>
+
+{% endblock %}
+
