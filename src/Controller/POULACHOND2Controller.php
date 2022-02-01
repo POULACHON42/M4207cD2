@@ -39,14 +39,12 @@ class POULACHOND2Controller extends AbstractController
             'titre' => 'confirmation',
             'login' => $nom,
 		]);
+   
+        $mdp = $request->request->get("pass");
+		return $this->render('poulachond2/traitement.html.twig', [
+            'titre' => 'confirmation',
+            'pass' => $mdp,
+		]);
     }
-
-
-
-
-
-
-
-
 
 }
