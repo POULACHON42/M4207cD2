@@ -14,7 +14,7 @@ class POULACHOND2Controller extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('poulachond2/index.html.twig', [
+        return $this->render('poulachond2/base.html.twig', [
             'controller_name' => 'POULACHOND2Controller',
         ]);
     }
@@ -25,26 +25,30 @@ class POULACHOND2Controller extends AbstractController
 	
     	public function home()
 	{
-		return $this->render('poulachond2/home.html.twig', [
+		return $this->render('poulachond2/login.html.twig', [
 		]);
-}
+    }
     
     /**
 	* @Route("/traitement", name="traitement")
 	*/
-    public function traitement(Request $request) : Response
+
+    public function forget(Request $request) : Response
 	{
-        $nom = $request->request->get("login");
-		return $this->render('poulachond2/traitement.html.twig', [
+        $nom = $request->request->get("username");
+        $mdp = $request->request->get("password");
+
+        if($nom=="root" && $mdp=="toor")
+            $message="Vous avez mis le bon mot de passe";
+        else
+            $message="Il ne s'agit pas du bon identifiant ou mot de passe";
+
+        return $this->render('poulachond2/verification.html.twig', [
             'titre' => 'confirmation',
             'login' => $nom,
-		]);
-   
-        $mdp = $request->request->get("pass");
-		return $this->render('poulachond2/traitement.html.twig', [
-            'titre' => 'confirmation',
             'pass' => $mdp,
-		]);
+            'ms' => $message,
+        ]);
     }
 
 }
