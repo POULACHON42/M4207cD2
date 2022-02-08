@@ -19,12 +19,7 @@ class Utilisateur
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Utilisateur;
-
-    /**
+     /**
      * @ORM\Column(type="string", length=255)
      */
     private $login;
@@ -47,18 +42,6 @@ class Utilisateur
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUtilisateur(): ?string
-    {
-        return $this->Utilisateur;
-    }
-
-    public function setUtilisateur(string $Utilisateur): self
-    {
-        $this->Utilisateur = $Utilisateur;
-
-        return $this;
     }
 
     public function getLogin(): ?string

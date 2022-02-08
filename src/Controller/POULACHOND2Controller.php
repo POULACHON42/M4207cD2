@@ -80,13 +80,10 @@ public function createUser(Request $request, EntityManagerInterface $manager) : 
     $monUtilisateur -> setlogin($recuplogin);
     $monUtilisateur -> setpassword($recuppassword);
 
-    $manager ->persist($monUtilisateur);
-    $manager ->flush ();
-    return new reponse ("Utilsateur créer");
-
-
-
-
+    $manager -> persist($monUtilisateur);
+    $manager -> flush ();
+    
+    return new Response ("Utilsateur créer");
 }
 
 
