@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<html>
+<body>
+        <div id="container">
+<form action="/creation" method="POST">
+ <Center><br></br>
+ <h3>Création Utilisateur</h3><br></br>
+  
+                <label><b>Nom d'utilisateur</b></label><br>
+                <input type="text" size="30" placeholder="Entrer le nom du nouvel utilisateur" name="login" required>
+<br>
+                <br><label><b>Mot de passe</b></label><br>
+                <input type="password" size="37" placeholder="Entrer le mot de passe pour votre utilisateur" name="password" required>
+<br></br>
+                <input type="submit" id='submit' value='Connexion'><br></br><br></br>
+              </Center> 
+             
+            </form>
+
+
+</html>
+{% endblock %}

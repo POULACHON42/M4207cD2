@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<body>
+
+<table class="table table-hover">
+    <br></br>
+    <thead>
+    <Center>
+        <tr>
+            <th scope="col" _msthash="2586987" _msttexthash="329914">Login</th>
+            <th scope="col" _msthash="2586987" _msttexthash="329914">Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in liste_user %}
+        <tr class="table-active">
+            <th scope="row" _msthash="2594735" _msttexthash="58019">{{item.login}}
+            <td _msthash="2594449" _msttexthash="383591">{{item.password}}
+        </tr>
+    </Center>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

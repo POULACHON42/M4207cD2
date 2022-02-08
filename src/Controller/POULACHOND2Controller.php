@@ -85,6 +85,20 @@ public function createUser(Request $request, EntityManagerInterface $manager) : 
     
     return new Response ("Utilsateur créer");
 }
+    /**
+	* @Route("/liste_user", name="liste_user")
+	*/
+    public function listeUser(Request $request, EntityManagerInterface $manager) : Response
+    {
+        $listeUser = $manager -> getRepository(Utilisateur::class)-> findAll();
+
+        return $this->render('poulachond2/users.html.twig', [
+            'liste_user' => $listeUser
+        ]);
+
+    }
+
+
 
 
 }
