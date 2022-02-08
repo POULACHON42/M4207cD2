@@ -44,12 +44,6 @@ class Acces
      */
     private $Fich;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Authorisation::class, inversedBy="acces")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $AuthoID;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -111,18 +105,6 @@ class Acces
     public function setFich(?Document $Fich): self
     {
         $this->Fich = $Fich;
-
-        return $this;
-    }
-
-    public function getAuthoID(): ?Authorisation
-    {
-        return $this->AuthoID;
-    }
-
-    public function setAuthoID(?Authorisation $AuthoID): self
-    {
-        $this->AuthoID = $AuthoID;
 
         return $this;
     }

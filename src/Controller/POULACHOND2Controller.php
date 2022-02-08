@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Utilisateur;
+
 
 class POULACHOND2Controller extends AbstractController
 {
@@ -33,22 +36,58 @@ class POULACHOND2Controller extends AbstractController
 	* @Route("/traitement", name="traitement")
 	*/
 
-    public function forget(Request $request) : Response
+    public function traitement(Request $request, EntityManagerInterface $manager) : Response
 	{
-        $nom = $request->request->get("username");
-        $mdp = $request->request->get("password");
-
-        if($nom=="root" && $mdp=="toor")
-            $message="Vous avez mis le bon mot de passe";
+        $username = $request -> request -> get("login");
+        $password = $request -> request -> get("password");
+        $repo = $manager -> getRepository (Utilisateur::class);
+        $username2 =  $repo -> findOneby (["login" => $username]);
+        
+        if($username==NULL)
+          $msg="Utilisateur inconnu";
+        elseif ($password == $username2 -> getPassword())
+            $msg="Vos identifiants sont corrects !";
         else
-            $message="Il ne s'agit pas du bon identifiant ou mot de passe";
+            $msg = "Il ne s'agit pas du bon identifiant ou  mot de passe";
 
         return $this->render('poulachond2/verification.html.twig', [
             'titre' => 'confirmation',
-            'login' => $nom,
-            'pass' => $mdp,
-            'ms' => $message,
-        ]);
+            'login' => $username,
+            'pass' => $password,
+            'ms' => $msg,
+        ]);   
     }
+
+    /**
+	* @Route("/creaUser", name="creaUser")
+	*/
+	public function creation()
+	{
+		return $this->render('poulachond2/création.html.twig', [
+		]);
+    }
+
+    /**
+	* @Route("/creation", name="creation")
+	*/
+public function createUser(Request $request, EntityManagerInterface $manager) : Response
+{
+    $recuplogin = $request -> request -> get("login");
+    $recuppassword = $request -> request -> get("password");
+
+    $monUtilisateur = new Utilisateur();
+
+    $monUtilisateur -> setlogin($recuplogin);
+    $monUtilisateur -> setpassword($recuppassword);
+
+    $manager ->persist($monUtilisateur);
+    $manager ->flush ();
+    return new reponse ("Utilsateur créer");
+
+
+
+
+}
+
 
 }
