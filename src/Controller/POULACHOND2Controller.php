@@ -43,7 +43,7 @@ class POULACHOND2Controller extends AbstractController
         $repo = $manager -> getRepository (Utilisateur::class);
         $username2 =  $repo -> findOneby (["login" => $username]);
         
-        if($username==NULL)
+        if($username== NULL)
           $msg="Utilisateur inconnu";
         elseif ($password == $username2 -> getPassword())
             $msg="Vos identifiants sont corrects !";
