@@ -38,12 +38,12 @@ class POULACHOND2Controller extends AbstractController
 
     public function traitement(Request $request, EntityManagerInterface $manager) : Response
 	{
-        $username = $request -> request -> get("login");
+        $username = $request -> request -> get("username");
         $password = $request -> request -> get("password");
         $repo = $manager -> getRepository (Utilisateur::class);
         $username2 =  $repo -> findOneby (["login" => $username]);
         
-        if($username== NULL)
+        if($username2==NULL)
           $msg="Utilisateur inconnu";
         elseif ($password == $username2 -> getPassword())
             $msg="Vos identifiants sont corrects !";
