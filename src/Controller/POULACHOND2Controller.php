@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Utilisateur;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\UserPasswordEncoderInterface;
 
 
 class POULACHOND2Controller extends AbstractController
@@ -95,7 +96,7 @@ class POULACHOND2Controller extends AbstractController
     /**
 	* @Route("/creation", name="creation")
 	*/
-public function createUser(Request $request, EntityManagerInterface $manager) : Response
+public function createUser(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) : Response
 {
     $recuplogin = $request -> request -> get("login");
     $recuppassword = $request -> request -> get("password");
@@ -108,6 +109,8 @@ public function createUser(Request $request, EntityManagerInterface $manager) : 
     $manager -> persist($monUtilisateur);
     $manager -> flush ();
     
+    $hash = $monUtilisateur->encodePassword($person, $person->getPassword());
+    $person->setPassword($hash);
     return new Response ("Utilsateur créer");
 }
     /**
@@ -124,6 +127,26 @@ public function createUser(Request $request, EntityManagerInterface $manager) : 
     }
 
 
+/*
+	* @Route("/envoi_fichier", name="envoi_fichier")
+	
+	
+    public function fichier(Request $request, EntityManagerInterface $manager, SessionInterface $session) : Response
+    {
+			if (isset($_FILES['fichier']) AND $_FILES['fichier']['error'] == 0)
+            {
+            $dest="/home/etudrt/FServerPOULACHON/public/";
+            if (file_exists($dest)==false)
+            mkdir("fichier");          
+            $_FILES['fichier']['tmp_name'];
+            $_FILES['fichier']['name'] ;
+            basename($_FILES['fichier']['name']);
+            }
+            {
+            move_uploaded_file($_FILES['fichier']['tmp_name']) $dest==false;
+            return new Response ("L'envoi a bien été effectué !");
 
-
+            }
+        }
+       */ 
 }
